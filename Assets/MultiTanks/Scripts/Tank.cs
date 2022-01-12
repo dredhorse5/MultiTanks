@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class Tank : NetworkBehaviour
 {
-    public float MinFoce;
-    public float MaxForce;
-    public float Torque;
+    public float MinForce = .5f;
+    public float MaxForce = 1f;
+    public float Torque = 2.5f;
+    public Transform ForcePoint;
     [Space] 
     [Min(0)] public float SideFriction = 1;
     [Min(0)] public float ForwardFriction = 1;
@@ -17,7 +18,13 @@ public class Tank : NetworkBehaviour
     public GameObject Tower;
     public float TowerRotateSpeed = 1f;
     public float ReloadTime = 1f;
+    public float ShootForce = 500;
     public ParticleSystem FireParticles;
+    [Space] 
+    public Projectile ProjectilePrefab;
+    public float ProjectileSpeed;
+    public Transform ProjectileSpawnPlace;
+    
     [Space]
     public WheelCollider[] LeftWheels;
     public WheelCollider[] RightWheels;
@@ -43,10 +50,11 @@ public class Tank : NetworkBehaviour
 
     private void Update()
     {
-        if(isLocalPlayer == false)
-            return;
         if (reloadTimer > 0)
             reloadTimer -= Time.deltaTime;
+        if(isLocalPlayer == false)
+            return;
+        if (Input.GetKey(KeyCode.C)) Fire();
     }
 
     private void FixedUpdate()
@@ -57,17 +65,21 @@ public class Tank : NetworkBehaviour
         SetTorque(Input.GetAxisRaw("Horizontal"));
 
         SetRotateTower(Input.GetAxis("TowerRotate"));
-        if (Input.GetKeyDown(KeyCode.C)) Fire();
         CalculateWheelGrounded();
     }
-
+    
+    [Command]
     public void Fire()
     {
         if(reloadTimer > 0)
             return;
         reloadTimer = ReloadTime;
-        _rigidbody.AddForce(Tower.transform.forward * 1000f,ForceMode.Impulse);
+        _rigidbody.AddForceAtPosition(Tower.transform.forward * ShootForce ,Tower.transform.position,ForceMode.Impulse);
         FireParticles.Play();
+
+        var proj = Instantiate(ProjectilePrefab,ProjectileSpawnPlace.position, ProjectileSpawnPlace.rotation );
+        NetworkServer.Spawn(proj.gameObject);
+        proj.Init(ProjectileSpeed, ProjectileSpawnPlace.forward);
     }
     private void SetRotateTower(float value)
     {
@@ -78,8 +90,8 @@ public class Tank : NetworkBehaviour
     {
         if(wheelGroundedValue <= 0.01)
             return;
-        var curForce = Mathf.Lerp(MinFoce,MaxForce,wheelGroundedValue);
-        _rigidbody.AddForce(1000f * curForce * value * transform.forward);
+        var curForce = Mathf.Lerp(MinForce,MaxForce,wheelGroundedValue);
+        _rigidbody.AddForceAtPosition(1000f * curForce * value * transform.forward,ForcePoint.position);
         
         _rigidbody.AddForce(1000f * -ForwardFriction * wheelGroundedValue * forwardVelocity );
     }
