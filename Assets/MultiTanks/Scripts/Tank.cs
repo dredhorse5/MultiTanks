@@ -68,15 +68,34 @@ public class Tank : NetworkBehaviour
         CalculateWheelGrounded();
     }
     
+    [ClientRpc]
+    public void AddImpulse(Vector3 impulse, Vector3 atPosition)
+    {
+        if (atPosition == default)
+            _rigidbody.AddForce(impulse, ForceMode.Impulse);
+        else
+            _rigidbody.AddForceAtPosition(impulse, atPosition, ForceMode.Impulse);
+    }
+
+    [ClientRpc]
+    public void FireFeedback()
+    {
+        if(isServer)
+            AddImpulse(Tower.transform.forward * ShootForce, Tower.transform.position);
+        FireParticles.Play();
+    }
+    #region Control
+
+    
     [Command]
-    public void Fire()
+    private void Fire()
     {
         if(reloadTimer > 0)
             return;
         reloadTimer = ReloadTime;
-        _rigidbody.AddForceAtPosition(Tower.transform.forward * ShootForce ,Tower.transform.position,ForceMode.Impulse);
-        FireParticles.Play();
 
+        FireFeedback();
+        
         var proj = Instantiate(ProjectilePrefab,ProjectileSpawnPlace.position, ProjectileSpawnPlace.rotation );
         NetworkServer.Spawn(proj.gameObject);
         proj.Init(ProjectileSpeed, ProjectileSpawnPlace.forward);
@@ -86,7 +105,7 @@ public class Tank : NetworkBehaviour
         Tower.transform.localRotation *= Quaternion.Euler(Vector3.up * value * TowerRotateSpeed) ;
     }
 
-    public void SetForce(float value)
+    private void SetForce(float value)
     {
         if(wheelGroundedValue <= 0.01)
             return;
@@ -96,7 +115,7 @@ public class Tank : NetworkBehaviour
         _rigidbody.AddForce(1000f * -ForwardFriction * wheelGroundedValue * forwardVelocity );
     }
 
-    public void SetTorque(float value)
+    private void SetTorque(float value)
     {
         if (wheelGroundedValue <= 0.01)
             return;
@@ -105,7 +124,7 @@ public class Tank : NetworkBehaviour
         _rigidbody.AddForce(1000f * -sideVelocity * SideFriction);
     }
 
-    public void InitWheels()
+    private void InitWheels()
     {
         foreach (var wheel in LeftWheels)
             wheel.motorTorque = 0.1f;
@@ -113,7 +132,9 @@ public class Tank : NetworkBehaviour
             wheel.motorTorque = 0.1f;
     }
 
-    public void CalculateWheelGrounded()
+    #endregion
+
+    private void CalculateWheelGrounded()
     {
         wheelGroundedValue = 0;
         foreach (var wheel in LeftWheels)

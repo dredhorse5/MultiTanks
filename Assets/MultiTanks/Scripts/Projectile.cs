@@ -7,6 +7,7 @@ public class Projectile : NetworkBehaviour
     public float ExplosionRadius;
     public AnimationCurve ForceByRadius;
     public float Force;
+    public DestroyAfter ExplosionPrefab;
     [Space]
     public Rigidbody Rigidbody;
     [Space] 
@@ -36,10 +37,12 @@ public class Projectile : NetworkBehaviour
     void OnTriggerEnter(Collider co)
     {
         Explosion();
+        var proj = Instantiate(ExplosionPrefab,transform.position, Quaternion.identity);
+        NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Destroy(gameObject);
     }
 
-    [Command]
+    [Server]
     public void Explosion()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
