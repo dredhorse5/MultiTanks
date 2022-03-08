@@ -8,6 +8,7 @@ public class Projectile : NetworkBehaviour
     public AnimationCurve ForceByRadius;
     public float Force;
     public DestroyAfter ExplosionPrefab;
+    public Vector3 ExplosionOffset;
     [Space]
     public Rigidbody Rigidbody;
     [Space] 
@@ -38,6 +39,7 @@ public class Projectile : NetworkBehaviour
     {
         Explosion();
         var proj = Instantiate(ExplosionPrefab,transform.position, Quaternion.identity);
+        proj.transform.position += new Vector3(transform.forward.x * ExplosionOffset.x, transform.forward.y * ExplosionOffset.y,transform.forward.z * ExplosionOffset.z) ;
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Destroy(gameObject);
     }

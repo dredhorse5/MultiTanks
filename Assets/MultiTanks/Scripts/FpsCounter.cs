@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
  
@@ -7,7 +8,12 @@ public class FpsCounter : MonoBehaviour
     [SerializeField] private float _hudRefreshRate = 1f;
  
     private float _timer;
- 
+
+    public void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     private void Update()
     {
         if (Time.unscaledTime > _timer)
