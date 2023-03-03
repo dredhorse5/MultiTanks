@@ -9,7 +9,8 @@ namespace MultiTanks
         [Space] public float MinForce = .5f;
         public float MaxForce = 1f;
         public float Torque = 2.5f;
-        [Space] [Min(0)] public float SideFriction = 1;
+        [Space] 
+        [Min(0)] public float SideFriction = 1;
         [Min(0)] public float ForwardFriction = 1;
         public AnimationCurve TorqueForceBySpeed;
 
@@ -45,7 +46,7 @@ namespace MultiTanks
             owner.Rigidbody.AddForceAtPosition(-1000f * curForce * forceValue * transform.forward, ForcePoint.position);
             owner.Rigidbody.AddForce(1000f * -ForwardFriction * wheelGroundedValue * forwardVelocity);
 
-            owner.Rigidbody.AddTorque((forceValue < 0f ? -1f : 1f)*1000f * Torque * torqueValue * transform.up * TorqueForceBySpeed.Evaluate(owner.Rigidbody.velocity.magnitude));
+            owner.Rigidbody.AddTorque(1000f * Torque * torqueValue * transform.up * TorqueForceBySpeed.Evaluate(owner.Rigidbody.velocity.magnitude));
             owner.Rigidbody.AddForce(1000f * -sideVelocity * SideFriction);
         }
         

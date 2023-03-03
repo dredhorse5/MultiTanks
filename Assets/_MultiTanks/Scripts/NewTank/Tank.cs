@@ -56,28 +56,69 @@ namespace MultiTanks
             {
                 CmdSetBodyForce(Input.GetAxisRaw("Vertical"));
                 CmdSetBodyTorque(Input.GetAxisRaw("Horizontal"));
-                //nowBody.SetForce(Input.GetAxisRaw("Vertical"));
-                //nowBody.SetTorque(Input.GetAxisRaw("Horizontal"));
             }
 
             if (nowGun)
             {
-                //nowGun.RotateTower(Input.GetAxis("TowerRotate"));
+                if (Input.GetKeyDown(KeyCode.Space))
+                    CmdFire();
+                
+                if (Input.GetKey(KeyCode.Z))
+                    CmdSetGunRotate(-1);
+                else if(Input.GetKey(KeyCode.X))
+                    CmdSetGunRotate(1);
+                else
+                    CmdSetGunRotate(0);
             }
         }
         [Command]
         private void CmdSetBodyForce(float input)
         {
-            //if(nowBody)
+            if(nowBody)
                 nowBody.SetForce(input);
         }
         [Command]
         private void CmdSetBodyTorque(float input)
         {
-            //if(nowBody)
+            if(nowBody)
                 nowBody.SetTorque(input);
         }
+
+        [Command]
+        private void CmdSetGunRotate(float value)
+        {
+            if (nowGun)
+                nowGun.SetRotate(value);
+        }
+
+        [Command]
+        private void CmdFire()
+        {
+            if (nowGun)
+            {
+                var (key, value) = nowGun.Fire();
+                if(key)
+                {
+                    AddImpulse(-value, nowGun.ProjectileSpawnPlace.transform.position);
+                    RpcFireFeedback();
+                }
+            }
+        }
+
+        [ClientRpc]
+        private void RpcFireFeedback()
+        {
+            nowGun.FireFeedback();
+        }
         
+        public void AddImpulse(Vector3 impulse, Vector3 atPosition = default)
+        {
+            if (atPosition == default)
+                Rigidbody.AddForce(impulse, ForceMode.Impulse);
+            else
+                Rigidbody.AddForceAtPosition(impulse, atPosition, ForceMode.Impulse);
+        }
+
         #region Change Body and Gun
 
         public void OnChangeGun(TankGun.Types oldType, TankGun.Types newType)
@@ -85,6 +126,7 @@ namespace MultiTanks
             if (nowGun)
                 Destroy(nowGun.gameObject);
             nowGun = Instantiate(GameManager.Instance.GetGunPrefab(newType), GunHolder);
+            nowGun.SetOwner(this);
             Debug.Log($"New gun: {nowGun.name}");
         }
 
