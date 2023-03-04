@@ -387,10 +387,9 @@ namespace MultiTanks
 								list.Add(item);
 								props.Add(key, list);
 							}
-							/*Graphics.DrawMeshInstanced(keyValuePair.Key.mesh, 0,
-								keyValuePair.Key.material, keyValuePair.Value, null,
-								UnityEngine.Rendering.ShadowCastingMode.TwoSided);*/
-							Instantiate(gameObject, item.GetPosition(), item.rotation);
+
+							var instantiate = Instantiate(gameObject, item.GetPosition(), item.rotation);
+							instantiate.GetComponent<Renderer>().sharedMaterial = key.material;
 						}
 						else if (firstChild.Name == "sprite")
 						{
@@ -419,7 +418,7 @@ namespace MultiTanks
 
 							if (!spritesEnabled)
 							{
-								gameObject2.SetActive(false);
+								//gameObject2.SetActive(false);
 							}
 
 							instancedSprites.Add(gameObject2);
