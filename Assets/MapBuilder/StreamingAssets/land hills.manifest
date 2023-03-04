@@ -1,0 +1,42 @@
+ManifestFileVersion: 0
+CRC: 340412941
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 80b0876f5bbbdd5802a2608f4f3295e8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Land Hills/land04.prefab
+- Assets/Prefabs/Proplibs/Land Hills/land03.prefab
+- Assets/Prefabs/Proplibs/Land Hills/land08.prefab
+- Assets/Prefabs/Proplibs/Land Hills/land07.prefab
+- Assets/Prefabs/Proplibs/Land Hills/land06.prefab
+- Assets/Prefabs/Proplibs/Land Hills/land01.prefab
+- Assets/Prefabs/Proplibs/Land Hills/land02.jpg
+- Assets/Prefabs/Proplibs/Land Hills/land02.prefab
+- Assets/Prefabs/Proplibs/Land Hills/library.xml
+- Assets/Prefabs/Proplibs/Land Hills/land1.jpg
+- Assets/Prefabs/Proplibs/Land Hills/land09.prefab
+Dependencies: []

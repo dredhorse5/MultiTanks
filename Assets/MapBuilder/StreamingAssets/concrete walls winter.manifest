@@ -1,0 +1,50 @@
+ManifestFileVersion: 0
+CRC: 2385038161
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 82cc8bfbc49e13143d4abdb9fa4c32ed
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e2.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e3.prefab
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_3w_g.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_3w.prefab
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e1.prefab
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/library.xml
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e1.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_st.prefab
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_cr.prefab
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_cr_g.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e1_g.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e2.prefab
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_3w.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e3_g.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e2_g.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_st_g.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_e3.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_st.jpg
+- Assets/Prefabs/ProplibsWinter/Concrete Walls Winter/wall_cr.jpg
+Dependencies: []

@@ -1,0 +1,55 @@
+ManifestFileVersion: 0
+CRC: 2140706094
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8d8dd91193877e19820192080d12190c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_wl53.jpg
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/h_tube3.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part7.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part1.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_tube1.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_wl5.jpg
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part3.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part8.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part6.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/partbig1.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part4.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part9.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_par12.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/library.xml
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_wl52.jpg
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_par20.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_tube2.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_wl51.jpg
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_corn2.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part5.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_par10.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/partbig2.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_corn1.prefab
+- Assets/Prefabs/ProplibsWinter/Broken Walls Winter/hs_part2.prefab
+Dependencies: []

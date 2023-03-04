@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 2818975290
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0f8b7421c730739321ff977fbbf45704
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/NubusWinter/Nubu 12 Winter/nubu_12.prefab
+- Assets/Prefabs/ProplibsWinter/NubusWinter/Nubu 12 Winter/library.xml
+Dependencies: []

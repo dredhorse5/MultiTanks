@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 1263388661
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 423be6a478d441fd2fb7bf41f87f71aa
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/NY/shar_3.png
+- Assets/Prefabs/ProplibsWinter/NY/elka.prefab
+- Assets/Prefabs/ProplibsWinter/NY/shar_1.png
+- Assets/Prefabs/ProplibsWinter/NY/shar_4.png
+- Assets/Prefabs/ProplibsWinter/NY/library.xml
+- Assets/Prefabs/ProplibsWinter/NY/shar_2.png
+Dependencies: []

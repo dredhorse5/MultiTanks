@@ -1,0 +1,96 @@
+ManifestFileVersion: 0
+CRC: 966589695
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ba9d4a49c9b03642602e815b7f3fb989
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Iran kahGel/end.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/brokens.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/walls_farsh.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/woode.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/darvaze.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/woodw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/taghnoorns.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/doors.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/balaro.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/windoww.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/saye.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/walln.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/mehrab.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/mehrabw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/ende.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/walln_2.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/cornerne.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/balaron.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/gonbadmj.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/outwdnw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/darvaze.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/cornersw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/outwd.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/carpetns.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/outwdse.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/walls_farsh4.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/tagh.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/brokenw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/walls.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/endn.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/walls_farsh2.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/walls_farsh3.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/sayew.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/library.xml
+- Assets/Prefabs/Proplibs/Iran kahGel/walln_1.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/in.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/woodn.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/corner.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/cornerse.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/endw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/gonbad.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/staire.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/walls_1.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/badgir.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/walls_2.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/wall.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/menare.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/carpet.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/ends.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/door.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/brokenn.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/window.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/outwdsw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/wood.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/broken.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/woods.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/outwdne.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/sayes.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/windows.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/cornernw.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/brokene.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/stair.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/windown.jpg
+- Assets/Prefabs/Proplibs/Iran kahGel/taghnoorwe.prefab
+- Assets/Prefabs/Proplibs/Iran kahGel/out.prefab
+Dependencies: []

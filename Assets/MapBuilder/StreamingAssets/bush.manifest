@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 3710830693
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: abf9e3c5ec7ca4a4d60a2b2ac2e80025
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Bush/wood1.png
+- Assets/Prefabs/Proplibs/Bush/bush1.png
+- Assets/Prefabs/Proplibs/Bush/library.xml
+- Assets/Prefabs/Proplibs/Bush/bush2.png
+Dependencies: []

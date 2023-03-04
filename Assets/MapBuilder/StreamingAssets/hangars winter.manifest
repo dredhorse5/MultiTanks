@@ -1,0 +1,35 @@
+ManifestFileVersion: 0
+CRC: 2335258647
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d6f0569b5e71cddda7ad9fe2cde8d4dc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/Hangars Winter/hang_2.prefab
+- Assets/Prefabs/ProplibsWinter/Hangars Winter/hang_3.prefab
+- Assets/Prefabs/ProplibsWinter/Hangars Winter/library.xml
+- Assets/Prefabs/ProplibsWinter/Hangars Winter/hang_1.prefab
+Dependencies: []

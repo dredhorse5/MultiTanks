@@ -1,0 +1,68 @@
+ManifestFileVersion: 0
+CRC: 699238630
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bc0dac73d442c614fe0813d7d8930c84
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_u2.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/up_brock.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_r1.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/bg_rock4.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn4.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/sm_rck4.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/bg_rock2.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_g5.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_g6.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/up_rock1.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn1.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn3.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/change02.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_g2.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_g3.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_g4.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn2.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn_b.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn2.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/big_rock.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn4.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/sm_rck2.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_u3.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/sm_rock1.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_u1.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn3.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/up_rock2.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/sm_rck1.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/up_rock.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/change01.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/corn1.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/sm_rck3.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/library.xml
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/sm_rock2.prefab
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/bg_rock3.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/bg_rock1.jpg
+- Assets/Prefabs/ProplibsWinter/Land Rocks Winter/rise_g1.prefab
+Dependencies: []

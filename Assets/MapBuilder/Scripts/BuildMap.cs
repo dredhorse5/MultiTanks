@@ -10,7 +10,8 @@ namespace MultiTanks
 		public TextAsset schema1x;
 		public TextAsset schema3x;
 		public GameObject spritePrefab;
-		public Text infoPanelText;
+		public string MapPath;
+		//public Text infoPanelText;
 		
 		
 		
@@ -47,7 +48,7 @@ namespace MultiTanks
 
 		private void InfoPanelWrite(int propCount, int spriteCount, int lightCount)
 		{
-			infoPanelText.text = string.Concat(new object[]
+			/*infoPanelText.text = string.Concat(new object[]
 			{
 				"Props: ",
 				propCount,
@@ -55,7 +56,7 @@ namespace MultiTanks
 				spriteCount,
 				"\nLights: ",
 				lightCount
-			});
+			});*/
 		}
 
 		private bool ValidateXml(System.Xml.XmlDocument xmlDoc, string schemaString)
@@ -73,6 +74,10 @@ namespace MultiTanks
 			return !xmlErrors;
 		}
 
+		public void LoadMap()
+		{
+			CheckMap(MapPath);
+		}
 		public void CheckMap(string mapFile)
 		{
 			System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
@@ -86,6 +91,10 @@ namespace MultiTanks
 				return;
 			}
 
+			clear();
+			buildMap(GeneratePropDict1X(xmlDocument));
+			
+			/*
 			if (ValidateXml(xmlDocument, schema1xString))
 			{
 				clear();
@@ -100,6 +109,7 @@ namespace MultiTanks
 			{
 				ShowErrorMessage("Not a valid map type");
 			}
+			*/
 
 			xmlDocument = null;
 		}
@@ -144,8 +154,7 @@ namespace MultiTanks
 			Resources.UnloadUnusedAssets();
 		}
 
-		private Dictionary<string, List<PropEntry>> GeneratePropDict1X(
-			System.Xml.XmlDocument mapXml)
+		private Dictionary<string, List<PropEntry>> GeneratePropDict1X(System.Xml.XmlDocument mapXml)
 		{
 			System.Xml.XmlNode xmlNode = mapXml.DocumentElement.SelectSingleNode("static-geometry[1]");
 			Dictionary<string, List<PropEntry>> dictionary =
@@ -271,158 +280,159 @@ namespace MultiTanks
 			foreach (KeyValuePair<string, List<PropEntry>> keyValuePair in propDict)
 			{
 				AssetBundle assetBundle = loadAssetBundle(keyValuePair.Key.ToLower());
-				if (assetBundle != null)
-				{
-					System.IO.StringReader txtReader =
-						new System.IO.StringReader(
-							(assetBundle.LoadAsset("library.xml") as TextAsset).text);
-					xmlDocument.Load(txtReader);
-					System.Xml.XmlElement documentElement = xmlDocument.DocumentElement;
-					if (keyValuePair.Key == "PointLight")
-					{
-						using (List<PropEntry>.Enumerator enumerator2 =
-						       keyValuePair.Value.GetEnumerator())
-						{
-							while (enumerator2.MoveNext())
-							{
-								PropEntry propEntry = enumerator2.Current;
-								try
-								{
-									System.Xml.XmlNode lightNode =
-										documentElement.SelectSingleNode("color[@texture='" + propEntry.texture + "']");
-									CreateLight(lightNode, propEntry.position);
-								}
-								catch
-								{
-								}
-							}
+				if (!assetBundle)
+					continue;
+				
+				
 
-							goto IL_454;
+				System.IO.StringReader txtReader = new System.IO.StringReader((assetBundle.LoadAsset("library.xml") as TextAsset).text);
+				xmlDocument.Load(txtReader);
+				System.Xml.XmlElement documentElement = xmlDocument.DocumentElement;
+				if (keyValuePair.Key == "PointLight")
+				{
+					using (List<PropEntry>.Enumerator enumerator2 =
+					       keyValuePair.Value.GetEnumerator())
+					{
+						while (enumerator2.MoveNext())
+						{
+							PropEntry propEntry = enumerator2.Current;
+							try
+							{
+								System.Xml.XmlNode lightNode =
+									documentElement.SelectSingleNode("color[@texture='" + propEntry.texture + "']");
+								CreateLight(lightNode, propEntry.position);
+							}
+							catch
+							{
+							}
 						}
 
-						goto IL_E8;
+						goto IL_454;
 					}
 
 					goto IL_E8;
-					IL_454:
-					assetBundle.Unload(false);
-					continue;
-					IL_E8:
-					Dictionary<string, Material> dictionary =
-						new Dictionary<string, Material>();
-					foreach (PropEntry propEntry2 in keyValuePair.Value)
-					{
-						try
-						{
-							System.Xml.XmlNode firstChild = documentElement
-								.SelectSingleNode("prop-group[@name='" + propEntry2.group + "']")
-								.SelectSingleNode("prop[@name='" + propEntry2.name + "']").FirstChild;
-							if (firstChild.Name == "mesh")
-							{
-								num2++;
-								string text = firstChild.Attributes["file"].Value;
-								int num3 = text.LastIndexOf(".");
-								if (num3 > 0)
-								{
-									text = text.Remove(num3);
-								}
-
-								GameObject gameObject =
-									assetBundle.LoadAsset(text + ".prefab") as GameObject;
-								Mesh sharedMesh =
-									gameObject.GetComponent<MeshFilter>().sharedMesh;
-								Material material;
-								if (propEntry2.texture != "")
-								{
-									string value = firstChild
-										.SelectSingleNode("texture[@name='" + propEntry2.texture + "']")
-										.Attributes["diffuse-map"].Value;
-									if (dictionary.ContainsKey(value))
-									{
-										material = dictionary[value];
-									}
-									else
-									{
-										if (!assetBundle.Contains(value))
-										{
-											continue;
-										}
-
-										Texture mainTexture =
-											assetBundle.LoadAsset(value) as Texture;
-										material = new Material(gameObject
-											.GetComponent<Renderer>().sharedMaterial);
-										material.mainTexture = mainTexture;
-										dictionary.Add(value, material);
-										instancedMaterials.Add(material);
-									}
-								}
-								else
-								{
-									material = gameObject.GetComponent<Renderer>().sharedMaterial;
-								}
-
-								MeshMaterial key =
-									new MeshMaterial(sharedMesh, material);
-								Matrix4x4 item =
-									Matrix4x4.TRS(propEntry2.position,
-										Quaternion.Euler(0f, propEntry2.zrotation, 0f),
-										new Vector3(1f, 1f, 1f));
-								if (props.ContainsKey(key))
-								{
-									props[key].Add(item);
-								}
-								else
-								{
-									List<Matrix4x4>
-										list = new List<Matrix4x4>();
-									list.Add(item);
-									props.Add(key, list);
-								}
-							}
-							else if (firstChild.Name == "sprite")
-							{
-								string value2 = firstChild.Attributes["file"].Value;
-								float num4 = ToFloat(firstChild.Attributes["scale"].Value) * 0.4f;
-								GameObject gameObject2 =
-									Object.Instantiate<GameObject>(
-										spritePrefab, propEntry2.position,
-										Quaternion.Euler(0f, 0f, 0f));
-								gameObject2.transform.localScale = new Vector3(num4, num4, 1f);
-								if (dictionary.ContainsKey(value2))
-								{
-									gameObject2.GetComponent<Renderer>().material =
-										dictionary[value2];
-								}
-								else if (assetBundle.Contains(value2))
-								{
-									Texture mainTexture2 =
-										assetBundle.LoadAsset(value2) as Texture;
-									Material material2 =
-										gameObject2.GetComponent<Renderer>().material;
-									material2.mainTexture = mainTexture2;
-									dictionary.Add(value2, material2);
-									instancedMaterials.Add(material2);
-								}
-
-								if (!spritesEnabled)
-								{
-									gameObject2.SetActive(false);
-								}
-
-								instancedSprites.Add(gameObject2);
-							}
-						}
-						catch
-						{
-						}
-					}
-
-					goto IL_454;
 				}
 
-				num++;
+				goto IL_E8;
+				IL_454:
+				assetBundle.Unload(false);
+				continue;
+				IL_E8:
+				Dictionary<string, Material> dictionary =
+					new Dictionary<string, Material>();
+				foreach (PropEntry propEntry2 in keyValuePair.Value)
+				{
+					try
+					{
+						System.Xml.XmlNode firstChild = documentElement
+							.SelectSingleNode("prop-group[@name='" + propEntry2.group + "']")
+							.SelectSingleNode("prop[@name='" + propEntry2.name + "']").FirstChild;
+						if (firstChild.Name == "mesh")
+						{
+							num2++;
+							string text = firstChild.Attributes["file"].Value;
+							int num3 = text.LastIndexOf(".");
+							if (num3 > 0)
+							{
+								text = text.Remove(num3);
+							}
+
+							GameObject gameObject =
+								assetBundle.LoadAsset(text + ".prefab") as GameObject;
+							Mesh sharedMesh =
+								gameObject.GetComponent<MeshFilter>().sharedMesh;
+							Material material;
+							if (propEntry2.texture != "")
+							{
+								string value = firstChild
+									.SelectSingleNode("texture[@name='" + propEntry2.texture + "']")
+									.Attributes["diffuse-map"].Value;
+								if (dictionary.ContainsKey(value))
+								{
+									material = dictionary[value];
+								}
+								else
+								{
+									if (!assetBundle.Contains(value))
+									{
+										continue;
+									}
+
+									Texture mainTexture =
+										assetBundle.LoadAsset(value) as Texture;
+									material = new Material(gameObject
+										.GetComponent<Renderer>().sharedMaterial);
+									material.mainTexture = mainTexture;
+									dictionary.Add(value, material);
+									instancedMaterials.Add(material);
+								}
+							}
+							else
+							{
+								material = gameObject.GetComponent<Renderer>().sharedMaterial;
+							}
+
+							MeshMaterial key =
+								new MeshMaterial(sharedMesh, material);
+							Matrix4x4 item =
+								Matrix4x4.TRS(propEntry2.position,
+									Quaternion.Euler(0f, propEntry2.zrotation, 0f),
+									new Vector3(1f, 1f, 1f));
+							if (props.ContainsKey(key))
+							{
+								props[key].Add(item);
+							}
+							else
+							{
+								List<Matrix4x4>
+									list = new List<Matrix4x4>();
+								list.Add(item);
+								props.Add(key, list);
+							}
+						}
+						else if (firstChild.Name == "sprite")
+						{
+							string value2 = firstChild.Attributes["file"].Value;
+							float num4 = ToFloat(firstChild.Attributes["scale"].Value) * 0.4f;
+							GameObject gameObject2 =
+								Object.Instantiate<GameObject>(
+									spritePrefab, propEntry2.position,
+									Quaternion.Euler(0f, 0f, 0f));
+							gameObject2.transform.localScale = new Vector3(num4, num4, 1f);
+							if (dictionary.ContainsKey(value2))
+							{
+								gameObject2.GetComponent<Renderer>().material =
+									dictionary[value2];
+							}
+							else if (assetBundle.Contains(value2))
+							{
+								Texture mainTexture2 =
+									assetBundle.LoadAsset(value2) as Texture;
+								Material material2 =
+									gameObject2.GetComponent<Renderer>().material;
+								material2.mainTexture = mainTexture2;
+								dictionary.Add(value2, material2);
+								instancedMaterials.Add(material2);
+							}
+
+							if (!spritesEnabled)
+							{
+								gameObject2.SetActive(false);
+							}
+
+							instancedSprites.Add(gameObject2);
+						}
+					}
+					catch
+					{
+					}
+				}
+
+				goto IL_454;
 			}
+
+			num++;
+
 
 			xmlDocument = null;
 			InfoPanelWrite(num2, instancedSprites.Count, instancedLights.Count);

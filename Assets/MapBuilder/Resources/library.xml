@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<library name="PointLight">
+    <prop-group name="default">
+        <prop name="Light">
+            <mesh file="lightbox.3ds">
+				<texture name="White" diffuse-map="sunwhite.jpg"/>
+                <texture name="Red" diffuse-map="sunred.jpg"/>
+                <texture name="Blue" diffuse-map="sunblue.jpg"/>
+                <texture name="Green" diffuse-map="sungreen.jpg"/>
+                <texture name="Yellow" diffuse-map="sunyellow.jpg"/>
+			</mesh>
+        </prop>
+    </prop-group>
+</library>

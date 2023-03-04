@@ -1,0 +1,52 @@
+ManifestFileVersion: 0
+CRC: 1237533983
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2b0e9f4fc2cba0e12703e1ca23455926
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_ai.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_ao.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_2.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_1.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_4.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_1.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/tunnel_2.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_23.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_24.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/library.xml
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/tunnel_1.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_22.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_t.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_b1.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_b2.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_s.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_3.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_2.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/wtile_b.jpg
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_2.prefab
+- Assets/Prefabs/ProplibsWinter/Outer Walls Winter/ow_21.jpg
+Dependencies: []

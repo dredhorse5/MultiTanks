@@ -1,0 +1,45 @@
+ManifestFileVersion: 0
+CRC: 3047125977
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 228df9495ad6d98fed79e8bf6eb59d7a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Iran kariz/kariz.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/turn.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/cheragh.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/abrah.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/dargahe.jpg
+- Assets/Prefabs/Proplibs/Iran kariz/charchub.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/kariz.jpg
+- Assets/Prefabs/Proplibs/Iran kariz/kariz_1.jpg
+- Assets/Prefabs/Proplibs/Iran kariz/saraziri.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/dargah.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/library.xml
+- Assets/Prefabs/Proplibs/Iran kariz/dar.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/turn3.prefab
+- Assets/Prefabs/Proplibs/Iran kariz/darw.jpg
+Dependencies: []

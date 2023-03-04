@@ -1,0 +1,38 @@
+ManifestFileVersion: 0
+CRC: 1674491731
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9299ca2f77dc401c0b646cbea9fea9a9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Broken Bottom/hs_rise3.prefab
+- Assets/Prefabs/Proplibs/Broken Bottom/library.xml
+- Assets/Prefabs/Proplibs/Broken Bottom/hs_rise5.prefab
+- Assets/Prefabs/Proplibs/Broken Bottom/hs_rise2.prefab
+- Assets/Prefabs/Proplibs/Broken Bottom/hs_rise1.prefab
+- Assets/Prefabs/Proplibs/Broken Bottom/hs_brid3.prefab
+- Assets/Prefabs/Proplibs/Broken Bottom/hs_rise4.prefab
+Dependencies: []

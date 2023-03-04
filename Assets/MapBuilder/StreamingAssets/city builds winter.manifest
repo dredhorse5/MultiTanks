@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+CRC: 4066907056
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 619905c7b4dfcb0eb731a02ef884a766
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/City Builds Winter/fab_tow.prefab
+- Assets/Prefabs/ProplibsWinter/City Builds Winter/fab_tow2.prefab
+- Assets/Prefabs/ProplibsWinter/City Builds Winter/library.xml
+Dependencies: []

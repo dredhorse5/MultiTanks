@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 22448831
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b7bba3413bfb389c81d4e8174a2021b6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Fachwerk Houses/Fachwerk House 2/library.xml
+- Assets/Prefabs/Proplibs/Fachwerk Houses/Fachwerk House 2/fahwerk2.prefab
+Dependencies: []

@@ -1,0 +1,45 @@
+ManifestFileVersion: 0
+CRC: 605301054
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 645bbb0c2ba683f2664563db49c94a31
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Stuffs/brok_tank.prefab
+- Assets/Prefabs/Proplibs/Stuffs/chest03.prefab
+- Assets/Prefabs/Proplibs/Stuffs/chest06.prefab
+- Assets/Prefabs/Proplibs/Stuffs/chest05.prefab
+- Assets/Prefabs/Proplibs/Stuffs/post.prefab
+- Assets/Prefabs/Proplibs/Stuffs/chest02.prefab
+- Assets/Prefabs/Proplibs/Stuffs/tube_2.prefab
+- Assets/Prefabs/Proplibs/Stuffs/tube_1.prefab
+- Assets/Prefabs/Proplibs/Stuffs/blocks.prefab
+- Assets/Prefabs/Proplibs/Stuffs/library.xml
+- Assets/Prefabs/Proplibs/Stuffs/chest01.prefab
+- Assets/Prefabs/Proplibs/Stuffs/tube_3.prefab
+- Assets/Prefabs/Proplibs/Stuffs/tube_4.prefab
+- Assets/Prefabs/Proplibs/Stuffs/chest04.prefab
+Dependencies: []

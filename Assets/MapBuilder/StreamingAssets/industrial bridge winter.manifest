@@ -1,0 +1,54 @@
+ManifestFileVersion: 0
+CRC: 2537357273
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9be778bce8f9c232d2fc30d3056e1e1d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_4.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_22.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_1.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_7.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_24.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_7.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_2.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_5.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_61.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_23.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_1_1.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_2.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/st_br01.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_1_2.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_6.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_1_3.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/st_br02.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_3.prefab
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_6.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_21.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_72.jpg
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/library.xml
+- Assets/Prefabs/ProplibsWinter/Industrial Bridge Winter/brid_71.jpg
+Dependencies: []

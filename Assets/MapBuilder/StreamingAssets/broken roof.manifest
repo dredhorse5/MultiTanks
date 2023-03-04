@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 1253434737
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 96a4e44b6bd920938ffffb654ac258be
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Broken Roof/brk_roof.prefab
+- Assets/Prefabs/Proplibs/Broken Roof/h_roofc.prefab
+- Assets/Prefabs/Proplibs/Broken Roof/roofc2x2.prefab
+- Assets/Prefabs/Proplibs/Broken Roof/bk_roof1.prefab
+- Assets/Prefabs/Proplibs/Broken Roof/hs_roof.prefab
+- Assets/Prefabs/Proplibs/Broken Roof/library.xml
+- Assets/Prefabs/Proplibs/Broken Roof/bk_roof2.prefab
+- Assets/Prefabs/Proplibs/Broken Roof/hs_roof2.prefab
+- Assets/Prefabs/Proplibs/Broken Roof/bk_roof.jpg
+- Assets/Prefabs/Proplibs/Broken Roof/hs_roof1.prefab
+Dependencies: []

@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 2248772894
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 146235f73326f6cf3ae01ed5c8feba71
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Nubus/Nubu 10/library.xml
+- Assets/Prefabs/Proplibs/Nubus/Nubu 10/nubu_10.prefab
+Dependencies: []

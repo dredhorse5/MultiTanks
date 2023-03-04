@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 1944808621
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 14a38220086bf75616df61ee1d55d422
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Bridge Parts/bridge_1_1.prefab
+- Assets/Prefabs/Proplibs/Bridge Parts/bridge_5.prefab
+- Assets/Prefabs/Proplibs/Bridge Parts/bridge_8.prefab
+- Assets/Prefabs/Proplibs/Bridge Parts/bridge_4.prefab
+- Assets/Prefabs/Proplibs/Bridge Parts/bridge_3.prefab
+- Assets/Prefabs/Proplibs/Bridge Parts/bridge_1.prefab
+- Assets/Prefabs/Proplibs/Bridge Parts/library.xml
+- Assets/Prefabs/Proplibs/Bridge Parts/bridge_2.prefab
+Dependencies: []

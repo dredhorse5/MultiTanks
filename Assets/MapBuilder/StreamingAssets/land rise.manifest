@@ -1,0 +1,45 @@
+ManifestFileVersion: 0
+CRC: 2804575286
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0fbf28d266cf039593a2bfd27a94f826
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Land Rise/rise_gr2.jpg
+- Assets/Prefabs/Proplibs/Land Rise/rise_gr1.prefab
+- Assets/Prefabs/Proplibs/Land Rise/line.prefab
+- Assets/Prefabs/Proplibs/Land Rise/crater.prefab
+- Assets/Prefabs/Proplibs/Land Rise/rise_gr4.jpg
+- Assets/Prefabs/Proplibs/Land Rise/land05.prefab
+- Assets/Prefabs/Proplibs/Land Rise/land33.prefab
+- Assets/Prefabs/Proplibs/Land Rise/land03.jpg
+- Assets/Prefabs/Proplibs/Land Rise/rise_gr3.jpg
+- Assets/Prefabs/Proplibs/Land Rise/land22.prefab
+- Assets/Prefabs/Proplibs/Land Rise/rise_gr1.jpg
+- Assets/Prefabs/Proplibs/Land Rise/library.xml
+- Assets/Prefabs/Proplibs/Land Rise/crater.jpg
+- Assets/Prefabs/Proplibs/Land Rise/rise_gr2.prefab
+Dependencies: []

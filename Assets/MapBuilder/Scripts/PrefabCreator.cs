@@ -7,11 +7,12 @@ using UnityEngine;
 
 namespace MultiTanks.MapBuilder
 {
+#if UNITY_EDITOR
+    
     public class PrefabCreator : MonoBehaviour
     {
         public List<GameObject> ModelsInScene;
         public bool DisableChildren = true;
-        public string PathToSavePrefabs;
         public Transform FolderForPrefabs;
 
         [Button()]
@@ -39,13 +40,6 @@ namespace MultiTanks.MapBuilder
             parent.transform.SetParent(FolderForPrefabs);
 
             SavePrefab(parent.gameObject);
-            return;
-            PrefabUtility.SaveAsPrefabAsset(parent, PathToSavePrefabs, out bool isSuccess);
-            
-            if(isSuccess)
-                Debug.Log($"prefab save is success: {parent.name}");
-            else
-                Debug.LogError($"error to save prefab: {parent.name}");
         }
 
         private void SavePrefab(GameObject gm)
@@ -66,4 +60,6 @@ namespace MultiTanks.MapBuilder
                 Debug.LogError("Prefab failed to save" + prefabSuccess);
         }
     }
+    
+#endif
 }

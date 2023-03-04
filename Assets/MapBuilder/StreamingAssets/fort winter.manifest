@@ -1,0 +1,52 @@
+ManifestFileVersion: 0
+CRC: 1294002968
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e8f6a56dedde1473c362936836b4b120
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_3.jpg
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_broken_1.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_end_2.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/short_1.jpg
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_cor_out.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/short_2.jpg
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_cor_in.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_end_1.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/library.xml
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_gate.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_broken_2.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_short.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/tower_str.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wlb_rise.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/tower_corner.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/short_3.jpg
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_2.jpg
+- Assets/Prefabs/ProplibsWinter/Fort Winter/tower_roof.prefab
+- Assets/Prefabs/ProplibsWinter/Fort Winter/wall_1.jpg
+- Assets/Prefabs/ProplibsWinter/Fort Winter/tower_end.prefab
+Dependencies: []

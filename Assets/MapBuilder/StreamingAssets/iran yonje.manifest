@@ -1,0 +1,46 @@
+ManifestFileVersion: 0
+CRC: 2817673291
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c13cee3566ca14ab2cf0c41a0cd6f15b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Iran yonje/windoww.jpg
+- Assets/Prefabs/Proplibs/Iran yonje/end.prefab
+- Assets/Prefabs/Proplibs/Iran yonje/outwdnw.jpg
+- Assets/Prefabs/Proplibs/Iran yonje/corner.prefab
+- Assets/Prefabs/Proplibs/Iran yonje/library.xml
+- Assets/Prefabs/Proplibs/Iran yonje/cornersw.jpg
+- Assets/Prefabs/Proplibs/Iran yonje/endw.jpg
+- Assets/Prefabs/Proplibs/Iran yonje/wall.prefab
+- Assets/Prefabs/Proplibs/Iran yonje/window.prefab
+- Assets/Prefabs/Proplibs/Iran yonje/out.prefab
+- Assets/Prefabs/Proplibs/Iran yonje/walls.jpg
+- Assets/Prefabs/Proplibs/Iran yonje/door.prefab
+- Assets/Prefabs/Proplibs/Iran yonje/in.prefab
+- Assets/Prefabs/Proplibs/Iran yonje/doors.jpg
+- Assets/Prefabs/Proplibs/Iran yonje/outwd.prefab
+Dependencies: []

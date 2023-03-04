@@ -1,0 +1,57 @@
+ManifestFileVersion: 0
+CRC: 3873706430
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0bb588d17cf5a4f08a363e949b33c1ec
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c5b0ef9cbe7f1b0711a69fa9bef55a46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_4.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_s.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_2.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/ow_t.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/wtile.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_1.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_b1.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_b2.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_21.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_1.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/tunnel_1.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_3.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/ow_2.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_22.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_t.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_2.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/tunnel1.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_24.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_23.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/tunnel_2.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/ow_ao.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_1.prefab
+- Assets/Prefabs/Proplibs/Outer Walls/library.xml
+- Assets/Prefabs/Proplibs/Outer Walls/wtile_b.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/tunnel2.jpg
+- Assets/Prefabs/Proplibs/Outer Walls/ow_ai.prefab
+Dependencies: []
