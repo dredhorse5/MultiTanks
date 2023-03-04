@@ -374,12 +374,8 @@ namespace MultiTanks
 								material = gameObject.GetComponent<Renderer>().sharedMaterial;
 							}
 
-							MeshMaterial key =
-								new MeshMaterial(sharedMesh, material);
-							Matrix4x4 item =
-								Matrix4x4.TRS(propEntry2.position,
-									Quaternion.Euler(0f, propEntry2.zrotation, 0f),
-									new Vector3(1f, 1f, 1f));
+							MeshMaterial key = new MeshMaterial(sharedMesh, material);
+							Matrix4x4 item = Matrix4x4.TRS(propEntry2.position, Quaternion.Euler(0f, propEntry2.zrotation, 0f), new Vector3(1f, 1f, 1f));
 							if (props.ContainsKey(key))
 							{
 								props[key].Add(item);
@@ -391,6 +387,10 @@ namespace MultiTanks
 								list.Add(item);
 								props.Add(key, list);
 							}
+							/*Graphics.DrawMeshInstanced(keyValuePair.Key.mesh, 0,
+								keyValuePair.Key.material, keyValuePair.Value, null,
+								UnityEngine.Rendering.ShadowCastingMode.TwoSided);*/
+							Instantiate(gameObject, item.GetPosition(), item.rotation);
 						}
 						else if (firstChild.Name == "sprite")
 						{
@@ -504,6 +504,7 @@ namespace MultiTanks
 
 		private void Update()
 		{
+			return;
 			if (props != null)
 			{
 				foreach (KeyValuePair<MeshMaterial, List<Matrix4x4>> keyValuePair
