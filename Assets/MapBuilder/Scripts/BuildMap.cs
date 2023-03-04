@@ -29,6 +29,7 @@ namespace MultiTanks
 		
 		private void Start()
 		{
+			return;
 			schema1xString = schema1x.text;
 			schema3xString = schema3x.text;
 			schema1x = null;
@@ -282,6 +283,7 @@ namespace MultiTanks
 				AssetBundle assetBundle = loadAssetBundle(keyValuePair.Key.ToLower());
 				if (!assetBundle)
 					continue;
+				Debug.Log(assetBundle.name + "is loaded...");
 				
 				
 
