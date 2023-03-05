@@ -15,7 +15,8 @@ namespace MultiTanks
 		public string MapName;
 		[Space]
 		public GameObject spritePrefab;
-		public string PrefabsPath;
+		public string SummerAssetsPath;
+		public string WinterAssetsPath;
 		
 		
 		private List<GameObject> instancedSprites = new List<GameObject>();
@@ -37,7 +38,7 @@ namespace MultiTanks
 			Clear();
 			CreateMap(GeneratePropDict(xmlDocument));
 		}
-
+		[Button()]
 		private void Clear()
 		{
 			if (instancedMeshes != null)
@@ -90,13 +91,14 @@ namespace MultiTanks
 			
 			foreach (var keyValuePair in propDict)
 			{
-				
-				AssetBundle assetBundle = AssetBundle.LoadFromFile(System.IO.Path.Combine(Application.streamingAssetsPath, keyValuePair.Key.ToLower()));
+				string assetsPath = (keyValuePair.Key.Contains("Winter") ? WinterAssetsPath : SummerAssetsPath) + keyValuePair.Key.ToLower();
+				string assetBundlePath = System.IO.Path.Combine(Application.streamingAssetsPath, keyValuePair.Key.ToLower());
+				AssetBundle assetBundle = AssetBundle.LoadFromFile(assetBundlePath);
 				if (!assetBundle)
 				{
 					errors++;
 					continue;
-				}
+				}// load from: winter/summer path + key name + prefab/material/texture
 				
 				System.IO.StringReader txtReader = new System.IO.StringReader((assetBundle.LoadAsset("library.xml") as TextAsset).text);
 				xmlDocument.Load(txtReader);
@@ -141,8 +143,8 @@ namespace MultiTanks
 							if (num3 > 0)
 								text = text.Remove(num3);
 
-							var meshPrefab = (GameObject)Resources.Load(PrefabsPath + text, typeof(GameObject));
-							
+							//var meshPrefab = (GameObject)Resources.Load(PrefabsPath + text, typeof(GameObject));
+							GameObject meshPrefab = assetBundle.LoadAsset(text + ".prefab") as GameObject;
 							
 							Material material;
 							if (propEntry2.texture != "")
@@ -167,7 +169,7 @@ namespace MultiTanks
 							}
 							else material = meshPrefab.GetComponent<Renderer>().sharedMaterial;
 
-							var spawnedMesh = PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
+							var spawnedMesh = Instantiate(meshPrefab);//PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
 							spawnedMesh.transform.SetParent(transform);
 							spawnedMesh.transform.position = propEntry2.position;
 							spawnedMesh.transform.rotation = Quaternion.Euler(0f, propEntry2.zrotation, 0f);
@@ -179,9 +181,9 @@ namespace MultiTanks
 						{
 							string value2 = firstChild.Attributes["file"].Value;
 							float scale = ToFloat(firstChild.Attributes["scale"].Value) * 0.4f;
-							GameObject spawnedSprite = Instantiate(spritePrefab, propEntry2.position, Quaternion.identity);
+							GameObject spawnedSprite = Instantiate(spritePrefab, propEntry2.position + Vector3.up*2f, spritePrefab.transform.rotation);
 							spawnedSprite.transform.SetParent(transform);
-							spawnedSprite.transform.localScale = new Vector3(scale, scale, 1f);
+							spawnedSprite.transform.localScale = new Vector3(scale, scale, 1f)/2.5f;
 							
 							if (dictionary.ContainsKey(value2))
 							{
