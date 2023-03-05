@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace MultiTanks
 {
@@ -11,6 +14,8 @@ namespace MultiTanks
 		public TextAsset schema3x;
 		public GameObject spritePrefab;
 		public string MapPath;
+
+		public string PrefabsPath;
 		//public Text infoPanelText;
 		
 		
@@ -339,9 +344,13 @@ namespace MultiTanks
 								text = text.Remove(num3);
 							}
 
-							
-							GameObject gameObject = assetBundle.LoadAsset(text + ".prefab") as GameObject;
-							Mesh sharedMesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
+							var gm_ = (GameObject)Resources.Load(PrefabsPath + text, typeof(GameObject));
+							if (text == "cliff_1")
+							{
+								
+							}
+							//GameObject gm_ = assetBundle.LoadAsset(text + ".prefab") as GameObject;
+							Mesh sharedMesh = gm_.GetComponent<MeshFilter>().sharedMesh;
 							Material material;
 							if (propEntry2.texture != "")
 							{
@@ -361,7 +370,7 @@ namespace MultiTanks
 
 									Texture mainTexture =
 										assetBundle.LoadAsset(value) as Texture;
-									material = new Material(gameObject
+									material = new Material(gm_
 										.GetComponent<Renderer>().sharedMaterial);
 									material.mainTexture = mainTexture;
 									dictionary.Add(value, material);
@@ -370,7 +379,7 @@ namespace MultiTanks
 							}
 							else
 							{
-								material = gameObject.GetComponent<Renderer>().sharedMaterial;
+								material = gm_.GetComponent<Renderer>().sharedMaterial;
 							}
 
 							MeshMaterial key = new MeshMaterial(sharedMesh, material);
@@ -387,8 +396,13 @@ namespace MultiTanks
 								props.Add(key, list);
 							}
 
-							var instantiate = Instantiate(gameObject, item.GetPosition(), item.rotation);
-							instantiate.GetComponent<Renderer>().sharedMaterial = key.material;
+							var prefab = PrefabUtility.InstantiatePrefab(gm_) as GameObject;
+							prefab.transform.position = item.GetPosition();
+							prefab.transform.rotation = item.rotation;
+							prefab.GetComponent<Renderer>().sharedMaterial = key.material;
+							
+							//var instantiate = Instantiate(gm_, item.GetPosition(), item.rotation);
+							//instantiate.GetComponent<Renderer>().sharedMaterial = key.material;
 						}
 						else if (firstChild.Name == "sprite")
 						{
@@ -423,8 +437,9 @@ namespace MultiTanks
 							instancedSprites.Add(gameObject2);
 						}
 					}
-					catch
+					catch (Exception e)
 					{
+						Debug.LogError(e);
 					}
 				}
 

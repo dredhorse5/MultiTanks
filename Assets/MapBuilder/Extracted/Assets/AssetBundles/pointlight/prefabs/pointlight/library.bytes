@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<colors>
-	<color texture="White" r="1" g="1" b="1" intensity="2" range="25"/>
-	<color texture="Red" r="1" g="0" b="0" intensity="2" range="25"/>
-	<color texture="Blue" r="0.298" g="0.537" b="0.674" intensity="2" range="25"/>
-	<color texture="Green" r="0" g="1" b="0" intensity="2" range="25"/>
-	<color texture="Yellow" r="1" g="1" b="0" intensity="2" range="25"/>
-</colors>
