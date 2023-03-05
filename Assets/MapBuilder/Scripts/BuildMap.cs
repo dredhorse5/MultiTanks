@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -10,52 +11,24 @@ namespace MultiTanks
 
 	public class BuildMap : MonoBehaviour
 	{
-		public TextAsset schema1x;
-		public TextAsset schema3x;
-		public GameObject spritePrefab;
 		public string MapPath;
-
+		public string MapName;
+		[Space]
+		public GameObject spritePrefab;
 		public string PrefabsPath;
-		//public Text infoPanelText;
 		
 		
-		
-		private string schema1xString;
-		private string schema3xString;
-		private bool xmlErrors;
-		private bool lightsEnabled;
-		private bool spritesEnabled;
 		private List<GameObject> instancedSprites = new List<GameObject>();
 		private List<GameObject> instancedMeshes = new List<GameObject>();
 		private List<Material> instancedMaterials = new List<Material>();
 		private List<GameObject> instancedLights = new List<GameObject>();
-		private System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-		private Dictionary<MeshMaterial, List<Matrix4x4>> props = new Dictionary<MeshMaterial, List<Matrix4x4>>();
 		
 
 		
-
-		private void ErrorMessage(string text)
-		{
-			Debug.LogError(text);
-		}
-
-		private void InfoPanelWrite(int propCount, int spriteCount, int lightCount)
-		{
-			/*infoPanelText.text = string.Concat(new object[]
-			{
-				"Props: ",
-				propCount,
-				"\nSprites: ",
-				spriteCount,
-				"\nLights: ",
-				lightCount
-			});*/
-		}
-
+		[Button()]
 		public void LoadMap()
 		{
-			LoadMap(MapPath);
+			LoadMap(MapPath + MapName + ".xml");
 		}
 		public void LoadMap(string mapFile)
 		{
@@ -63,55 +36,49 @@ namespace MultiTanks
 			xmlDocument.Load(mapFile);
 			Clear();
 			CreateMap(GeneratePropDict(xmlDocument));
-			xmlDocument = null;
 		}
 
 		private void Clear()
 		{
 			if (instancedMeshes != null)
 			{
-				foreach (var mesh in instancedMeshes)
-				{
-					Destroy(mesh);
-				}
+				foreach (GameObject mesh in instancedMeshes)
+					DestroyObject(mesh);
 				instancedMeshes.Clear();
 			}
 			if (instancedMaterials != null)
 			{
 				foreach (Material obj in instancedMaterials)
-				{
-					Destroy(obj);
-				}
-
+					DestroyMaterial(obj);
 				instancedMaterials.Clear();
 			}
 
 			if (instancedLights != null)
 			{
 				foreach (GameObject obj2 in instancedLights)
-				{
-					Object.Destroy(obj2);
-				}
-
+					DestroyObject(obj2);
 				instancedLights.Clear();
 			}
 
 			if (instancedSprites != null)
 			{
 				foreach (GameObject obj3 in instancedSprites)
-				{
-					Object.Destroy(obj3);
-				}
-
+					DestroyObject(obj3);
 				instancedSprites.Clear();
 			}
 
-			if (props != null)
-			{
-				props.Clear();
-			}
-
 			Resources.UnloadUnusedAssets();
+
+			void DestroyObject(GameObject obj)
+			{
+				if (Application.isPlaying) Destroy(obj);
+				else DestroyImmediate(obj);
+			}
+			void DestroyMaterial(Material obj)
+			{
+				if (Application.isPlaying) Destroy(obj);
+				else DestroyImmediate(obj);
+			}
 		}
 
 
@@ -119,7 +86,9 @@ namespace MultiTanks
 		{
 			System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
 			int errors = 0;
-			foreach (KeyValuePair<string, List<PropEntry>> keyValuePair in propDict)
+			
+			
+			foreach (var keyValuePair in propDict)
 			{
 				
 				AssetBundle assetBundle = AssetBundle.LoadFromFile(System.IO.Path.Combine(Application.streamingAssetsPath, keyValuePair.Key.ToLower()));
@@ -129,11 +98,12 @@ namespace MultiTanks
 					continue;
 				}
 				
-				
-
 				System.IO.StringReader txtReader = new System.IO.StringReader((assetBundle.LoadAsset("library.xml") as TextAsset).text);
 				xmlDocument.Load(txtReader);
 				System.Xml.XmlElement documentElement = xmlDocument.DocumentElement;
+				
+				
+				
 				if (keyValuePair.Key == "PointLight")
 				{
 					using (List<PropEntry>.Enumerator enumerator2 = keyValuePair.Value.GetEnumerator())
@@ -151,19 +121,10 @@ namespace MultiTanks
 							}
 						}
 
-						goto IL_454;
+						assetBundle.Unload(false);
+						continue;
 					}
-
-					goto IL_E8;
 				}
-
-				goto IL_E8;
-				IL_454:
-				assetBundle.Unload(false);
-				continue;
-				IL_E8:
-				
-				
 				
 				Dictionary<string, Material> dictionary = new Dictionary<string, Material>();
 				foreach (PropEntry propEntry2 in keyValuePair.Value)
@@ -180,9 +141,9 @@ namespace MultiTanks
 							if (num3 > 0)
 								text = text.Remove(num3);
 
-							//GameObject gm_ = assetBundle.LoadAsset(text + ".prefab") as GameObject;
 							var meshPrefab = (GameObject)Resources.Load(PrefabsPath + text, typeof(GameObject));
-							Mesh sharedMesh = meshPrefab.GetComponent<MeshFilter>().sharedMesh;
+							
+							
 							Material material;
 							if (propEntry2.texture != "")
 							{
@@ -204,32 +165,15 @@ namespace MultiTanks
 									instancedMaterials.Add(material);
 								}
 							}
-							else
-								material = meshPrefab.GetComponent<Renderer>().sharedMaterial;
-
-							MeshMaterial key = new MeshMaterial(sharedMesh, material);
-							Matrix4x4 item = Matrix4x4.TRS(propEntry2.position, Quaternion.Euler(0f, propEntry2.zrotation, 0f), new Vector3(1f, 1f, 1f));
-							if (props.ContainsKey(key))
-							{
-								props[key].Add(item);
-							}
-							else
-							{
-								List<Matrix4x4>
-									list = new List<Matrix4x4>();
-								list.Add(item);
-								props.Add(key, list);
-							}
+							else material = meshPrefab.GetComponent<Renderer>().sharedMaterial;
 
 							var spawnedMesh = PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
 							spawnedMesh.transform.SetParent(transform);
-							spawnedMesh.transform.position = item.GetPosition();
-							spawnedMesh.transform.rotation = item.rotation;
-							spawnedMesh.GetComponent<Renderer>().sharedMaterial = key.material;
+							spawnedMesh.transform.position = propEntry2.position;
+							spawnedMesh.transform.rotation = Quaternion.Euler(0f, propEntry2.zrotation, 0f);
+							spawnedMesh.GetComponent<Renderer>().sharedMaterial = material;
 							
 							instancedMeshes.Add(spawnedMesh);
-							//var instantiate = Instantiate(gm_, item.GetPosition(), item.rotation);
-							//instantiate.GetComponent<Renderer>().sharedMaterial = key.material;
 						}
 						else if (firstChild.Name == "sprite")
 						{
@@ -260,13 +204,12 @@ namespace MultiTanks
 					}
 				}
 
-				goto IL_454;
+				assetBundle.Unload(false);
 			}
-
-
-			xmlDocument = null;
+			
+			
 			if (errors > 0)
-				ErrorMessage(errors + " libraries could not be loaded");
+				Debug.LogError(errors + " libraries could not be loaded");
 		}
 
 		
@@ -284,10 +227,6 @@ namespace MultiTanks
 			light.shadows = LightShadows.Hard;
 			light.shadowStrength = 0.9f;
 			instancedLights.Add(gameObject);
-			if (!lightsEnabled)
-			{
-				gameObject.SetActive(false);
-			}
 		}
 		private Dictionary<string, List<PropEntry>> GeneratePropDict(System.Xml.XmlDocument mapXml)
 		{
@@ -332,12 +271,12 @@ namespace MultiTanks
 
 			return dictionary;
 		}
-		private float ToFloat(string text) => System.Convert.ToSingle(text, culture);
+		private float ToFloat(string text) => System.Convert.ToSingle(text, new System.Globalization.CultureInfo("en-US"));
 		
 		private void Update()
 		{
 			return;
-			if (props != null)
+			/*if (props != null)
 			{
 				foreach (KeyValuePair<MeshMaterial, List<Matrix4x4>> keyValuePair
 				         in props)
@@ -352,6 +291,8 @@ namespace MultiTanks
 							int index = i * 1023;
 							List<Matrix4x4> list = new List<Matrix4x4>();
 							list.AddRange(keyValuePair.Value.GetRange(index, count2));
+							
+							
 							Graphics.DrawMeshInstanced(keyValuePair.Key.mesh, 0,
 								keyValuePair.Key.material, list, null,
 								UnityEngine.Rendering.ShadowCastingMode.TwoSided);
@@ -364,7 +305,7 @@ namespace MultiTanks
 							UnityEngine.Rendering.ShadowCastingMode.TwoSided);
 					}
 				}
-			}
+			}*/
 		}
 		
 		
