@@ -91,19 +91,24 @@ namespace MultiTanks
 			
 			foreach (var keyValuePair in propDict)
 			{
-				string assetsPath = (keyValuePair.Key.Contains("Winter") ? WinterAssetsPath : SummerAssetsPath) + keyValuePair.Key.ToLower();
-				string assetBundlePath = System.IO.Path.Combine(Application.streamingAssetsPath, keyValuePair.Key.ToLower());
-				AssetBundle assetBundle = AssetBundle.LoadFromFile(assetBundlePath);
-				if (!assetBundle)
+				string assetsPath = (keyValuePair.Key.Contains("Winter") ? WinterAssetsPath : SummerAssetsPath) + keyValuePair.Key.ToLower() + "/";
+				//string assetBundlePath = System.IO.Path.Combine(Application.streamingAssetsPath, keyValuePair.Key.ToLower());
+				//AssetBundle assetBundle = AssetBundle.LoadFromFile(assetBundlePath);
+				//if (!assetBundle)
+				//{
+				//	errors++;
+				//	continue;
+				//}// load from: winter/summer path + key name + prefab/material/texture
+				var library = (TextAsset)Resources.Load(assetsPath + "library", typeof(TextAsset));
+				if (library == null)
 				{
 					errors++;
 					continue;
-				}// load from: winter/summer path + key name + prefab/material/texture
-				
-				System.IO.StringReader txtReader = new System.IO.StringReader((assetBundle.LoadAsset("library.xml") as TextAsset).text);
+				}
+				System.IO.StringReader txtReader = new System.IO.StringReader(library.text); 
+				//System.IO.StringReader txtReader = new System.IO.StringReader((assetBundle.LoadAsset("library.xml") as TextAsset).text);
 				xmlDocument.Load(txtReader);
 				System.Xml.XmlElement documentElement = xmlDocument.DocumentElement;
-				
 				
 				
 				if (keyValuePair.Key == "PointLight")
@@ -123,7 +128,7 @@ namespace MultiTanks
 							}
 						}
 
-						assetBundle.Unload(false);
+						//assetBundle.Unload(false);
 						continue;
 					}
 				}
@@ -144,7 +149,9 @@ namespace MultiTanks
 								text = text.Remove(num3);
 
 							//var meshPrefab = (GameObject)Resources.Load(PrefabsPath + text, typeof(GameObject));
-							GameObject meshPrefab = assetBundle.LoadAsset(text + ".prefab") as GameObject;
+							//GameObject meshPrefab = assetBundle.LoadAsset(text + ".prefab") as GameObject;
+							var meshPrefab = (GameObject) Resources.Load(assetsPath + text, typeof(GameObject));
+							var spawnedMesh = PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
 							
 							Material material;
 							if (propEntry2.texture != "")
@@ -152,24 +159,27 @@ namespace MultiTanks
 								string value = firstChild
 									.SelectSingleNode("texture[@name='" + propEntry2.texture + "']")
 									.Attributes["diffuse-map"].Value;
+								value = value.Replace(".jpg", "");
 								
 								if (dictionary.ContainsKey(value))
 									material = dictionary[value];
 								else
 								{
-									if (!assetBundle.Contains(value))
-										continue;
+									//if (!assetBundle.Contains(value))
+									//	continue;
 
-									Texture mainTexture = assetBundle.LoadAsset(value) as Texture;
-									material = new Material(meshPrefab.GetComponent<Renderer>().sharedMaterial);
+									//Texture mainTexture = assetBundle.LoadAsset(value) as Texture;
+									Texture mainTexture = (Texture) Resources.Load(assetsPath + value, typeof(Texture));
+									material = new Material(spawnedMesh.GetComponent<Renderer>().sharedMaterial);
 									material.mainTexture = mainTexture;
 									dictionary.Add(value, material);
 									instancedMaterials.Add(material);
 								}
 							}
-							else material = meshPrefab.GetComponent<Renderer>().sharedMaterial;
+							else material = spawnedMesh.GetComponent<Renderer>().sharedMaterial;
 
-							var spawnedMesh = Instantiate(meshPrefab);//PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
+							//var spawnedMesh = Instantiate(meshPrefab);
+							//var spawnedMesh = PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
 							spawnedMesh.transform.SetParent(transform);
 							spawnedMesh.transform.position = propEntry2.position;
 							spawnedMesh.transform.rotation = Quaternion.Euler(0f, propEntry2.zrotation, 0f);
@@ -180,6 +190,7 @@ namespace MultiTanks
 						else if (firstChild.Name == "sprite")
 						{
 							string value2 = firstChild.Attributes["file"].Value;
+							value2 = value2.Replace(".png", "");
 							float scale = ToFloat(firstChild.Attributes["scale"].Value) * 0.4f;
 							GameObject spawnedSprite = Instantiate(spritePrefab, propEntry2.position + Vector3.up*2f, spritePrefab.transform.rotation);
 							spawnedSprite.transform.SetParent(transform);
@@ -189,9 +200,10 @@ namespace MultiTanks
 							{
 								spawnedSprite.GetComponent<Renderer>().material = dictionary[value2];
 							}
-							else if (assetBundle.Contains(value2))
+							else /*if (assetBundle.Contains(value2))*/
 							{
-								Texture mainTexture2 = assetBundle.LoadAsset(value2) as Texture;
+								//Texture mainTexture2 = assetBundle.LoadAsset(value2) as Texture;
+								Texture mainTexture2 = (Texture) Resources.Load(assetsPath + value2, typeof(Texture));
 								Material material2 = spawnedSprite.GetComponent<Renderer>().material;
 								material2.mainTexture = mainTexture2;
 								dictionary.Add(value2, material2);
@@ -206,7 +218,7 @@ namespace MultiTanks
 					}
 				}
 
-				assetBundle.Unload(false);
+				//assetBundle.Unload(false);
 			}
 			
 			
