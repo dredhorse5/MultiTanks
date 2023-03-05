@@ -339,10 +339,9 @@ namespace MultiTanks
 								text = text.Remove(num3);
 							}
 
-							GameObject gameObject =
-								assetBundle.LoadAsset(text + ".prefab") as GameObject;
-							Mesh sharedMesh =
-								gameObject.GetComponent<MeshFilter>().sharedMesh;
+							
+							GameObject gameObject = assetBundle.LoadAsset(text + ".prefab") as GameObject;
+							Mesh sharedMesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
 							Material material;
 							if (propEntry2.texture != "")
 							{
