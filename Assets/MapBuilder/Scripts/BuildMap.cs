@@ -17,6 +17,7 @@ namespace MultiTanks
 		public GameObject spritePrefab;
 		public string SummerAssetsPath;
 		public string WinterAssetsPath;
+		public string MaterialsFullPath;
 		
 		
 		private List<GameObject> instancedSprites = new List<GameObject>();
@@ -174,6 +175,14 @@ namespace MultiTanks
 									material.mainTexture = mainTexture;
 									dictionary.Add(value, material);
 									instancedMaterials.Add(material);
+
+									var matPath = $"{MaterialsFullPath}{material.name}_{mainTexture.name}.mat";
+									var loadedAsset = AssetDatabase.LoadAssetAtPath<Material>(matPath);
+									if (!loadedAsset)
+									{
+										AssetDatabase.CreateAsset(material, "Assets/Artifacts/" + $"{material.name}_{mainTexture.name}.mat");
+										Debug.Log($"New asset: {material.name}_{mainTexture.name}.mat");
+									}
 								}
 							}
 							else material = spawnedMesh.GetComponent<Renderer>().sharedMaterial;
@@ -287,42 +296,14 @@ namespace MultiTanks
 		}
 		private float ToFloat(string text) => System.Convert.ToSingle(text, new System.Globalization.CultureInfo("en-US"));
 		
-		private void Update()
+		public static void SaveObjectToFile(Object obj, string fileName)
 		{
-			return;
-			/*if (props != null)
-			{
-				foreach (KeyValuePair<MeshMaterial, List<Matrix4x4>> keyValuePair
-				         in props)
-				{
-					int count = keyValuePair.Value.Count;
-					if (count > 1023)
-					{
-						int num = count / 1023 + 1;
-						for (int i = 0; i < num; i++)
-						{
-							int count2 = Mathf.Min(1023, count - 1023 * i);
-							int index = i * 1023;
-							List<Matrix4x4> list = new List<Matrix4x4>();
-							list.AddRange(keyValuePair.Value.GetRange(index, count2));
-							
-							
-							Graphics.DrawMeshInstanced(keyValuePair.Key.mesh, 0,
-								keyValuePair.Key.material, list, null,
-								UnityEngine.Rendering.ShadowCastingMode.TwoSided);
-						}
-					}
-					else
-					{
-						Graphics.DrawMeshInstanced(keyValuePair.Key.mesh, 0,
-							keyValuePair.Key.material, keyValuePair.Value, null,
-							UnityEngine.Rendering.ShadowCastingMode.TwoSided);
-					}
-				}
-			}*/
+			AssetDatabase.CreateAsset(obj, fileName);
+			AssetDatabase.SaveAssets();
+			AssetDatabase.Refresh();
 		}
-		
-		
+
+
 		private struct PropEntry
 		{
 			public PropEntry(string group, string name, string texture, Vector3 position, float zrotation)
