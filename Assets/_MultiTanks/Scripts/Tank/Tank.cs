@@ -46,9 +46,9 @@ namespace MultiTanks
                 return;
             
             if (Input.GetKey(KeyCode.Q))
-                CameraTarget.SetMove(-1);
-            else if(Input.GetKey(KeyCode.E))
                 CameraTarget.SetMove(1);
+            else if(Input.GetKey(KeyCode.E))
+                CameraTarget.SetMove(-1);
             else
                 CameraTarget.SetMove(0);
             
