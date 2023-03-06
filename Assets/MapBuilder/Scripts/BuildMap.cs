@@ -21,12 +21,6 @@ namespace MultiTanks
 		[Space] 
 		public string ReserveTexturePath;
 		
-		
-		private List<GameObject> instancedSprites = new List<GameObject>();
-		private List<GameObject> instancedMeshes = new List<GameObject>();
-		private List<Material> instancedMaterials = new List<Material>();
-		private List<GameObject> instancedLights = new List<GameObject>();
-
 		private Transform Parent;
 		
 
@@ -61,7 +55,6 @@ namespace MultiTanks
 		{
 			Parent = new GameObject(MapName).transform;
 			System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
-			int errors = 0;
 			
 			
 			foreach (var keyValuePair in propDict)
@@ -70,7 +63,7 @@ namespace MultiTanks
 				var library = (TextAsset)Resources.Load(assetsPath + "library", typeof(TextAsset));
 				if (library == null)
 				{
-					errors++;
+					Debug.LogError($"Library: {assetsPath} cant be loaded");
 					continue;
 				}
 				System.IO.StringReader txtReader = new System.IO.StringReader(library.text); 
@@ -98,7 +91,6 @@ namespace MultiTanks
 					}
 				}
 				
-				Dictionary<string, Material> dictionary = new Dictionary<string, Material>();
 				foreach (PropEntry propEntry2 in keyValuePair.Value)
 				{
 					try
@@ -114,7 +106,15 @@ namespace MultiTanks
 								text = text.Remove(num3);
 							
 							var meshPrefab = (GameObject) Resources.Load(assetsPath + text, typeof(GameObject));
+							if (meshPrefab == null)
+							{
+								Debug.LogError($"Cant find mesh prefab: {assetsPath + text}");
+								continue;
+							}
 							var spawnedMesh = PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
+							spawnedMesh.transform.SetParent(Parent);
+							spawnedMesh.transform.position = propEntry2.position;
+							spawnedMesh.transform.rotation = Quaternion.Euler(0f, propEntry2.zrotation, 0f);
 							
 							Material material = null;
 							if (propEntry2.texture != "")
@@ -134,39 +134,29 @@ namespace MultiTanks
 								}
 
 
-								string matPath =
-									$"{MaterialsFullPath}{spawnedMesh.GetComponent<Renderer>().sharedMaterial.name}_{mainTexture.name}.mat";
+								string matPath = $"{MaterialsFullPath}{spawnedMesh.GetComponent<Renderer>().sharedMaterial.name}_{mainTexture.name}.mat";
 								var loadedMaterial = AssetDatabase.LoadAssetAtPath<Material>(matPath);
 								if (!loadedMaterial)
 								{
 									material = new Material(spawnedMesh.GetComponent<Renderer>().sharedMaterial);
 									material.mainTexture = mainTexture;
-									instancedMaterials.Add(material);
 									AssetDatabase.CreateAsset(material, matPath);
 									Debug.Log($"New asset: {material.name}_{mainTexture.name}.mat");
 								}
 								else
 									material = loadedMaterial;
 
-							}
-							spawnedMesh.transform.SetParent(Parent);
-							spawnedMesh.transform.position = propEntry2.position;
-							spawnedMesh.transform.rotation = Quaternion.Euler(0f, propEntry2.zrotation, 0f);
-							if(material != null)
 								spawnedMesh.GetComponent<Renderer>().sharedMaterial = material;
+							}
 							
-							instancedMeshes.Add(spawnedMesh);
 						}
 						else if (firstChild.Name == "sprite")
 						{
-							
-							
-							
 							string textureName = firstChild.Attributes["file"].Value;
 							textureName = textureName.Replace(".png", "");
 							float scale = ToFloat(firstChild.Attributes["scale"].Value) * 0.4f;
+							
 							var spawnedSprite__ = PrefabUtility.InstantiatePrefab(spritePrefab) as GameObject;
-							//GameObject spawnedSprite = Instantiate(spritePrefab, propEntry2.position + Vector3.up * 2f, spritePrefab.transform.rotation);
 							spawnedSprite__.transform.SetParent(Parent);
 							spawnedSprite__.transform.position = propEntry2.position;
 							spawnedSprite__.transform.localScale = new Vector3(scale, scale, scale);
@@ -188,7 +178,6 @@ namespace MultiTanks
 							{
 								material2 = new Material(spawnedSprite__.transform.GetChild(0).GetComponent<Renderer>().sharedMaterial);
 								material2.mainTexture = mainTexture;
-								instancedMaterials.Add(material2);
 								AssetDatabase.CreateAsset(material2, matPath);
 								Debug.Log($"New asset: {material2.name}_{mainTexture.name}.mat");
 							}
@@ -196,12 +185,6 @@ namespace MultiTanks
 								material2 = loadedMaterial;
 
 							spawnedSprite__.transform.GetChild(0).GetComponent<Renderer>().sharedMaterial = material2;
-							//Texture mainTexture2 = (Texture) Resources.Load(assetsPath + textureName, typeof(Texture));
-							//Material material2 = spawnedSprite.GetComponent<Renderer>().sharedMaterial;
-							//material2.mainTexture = mainTexture2;
-							//dictionary.Add(textureName, material2);
-							//instancedMaterials.Add(material2);
-							//instancedSprites.Add(spawnedSprite);
 						}
 					}
 					catch (Exception e)
@@ -210,10 +193,6 @@ namespace MultiTanks
 					}
 				}
 			}
-			
-			
-			if (errors > 0)
-				Debug.LogError(errors + " libraries could not be loaded");
 		}
 
 		
@@ -221,6 +200,7 @@ namespace MultiTanks
 		private void CreateLight(System.Xml.XmlNode lightNode, Vector3 position)
 		{
 			GameObject gameObject = new GameObject();
+			gameObject.transform.SetParent(Parent);
 			gameObject.transform.Translate(position);
 			Light light = gameObject.AddComponent<Light>();
 			light.type = LightType.Point;
@@ -230,7 +210,6 @@ namespace MultiTanks
 			light.range = ToFloat(lightNode.Attributes["range"].Value);
 			light.shadows = LightShadows.Hard;
 			light.shadowStrength = 0.9f;
-			instancedLights.Add(gameObject);
 		}
 		private Dictionary<string, List<PropEntry>> GeneratePropDict(System.Xml.XmlDocument mapXml)
 		{
@@ -258,32 +237,18 @@ namespace MultiTanks
 							-57.295776f + 180f;
 						PropEntry item =
 							new PropEntry(value2, value3, innerText, position, zrotation);
+						
 						if (dictionary.ContainsKey(value))
-						{
 							dictionary[value].Add(item);
-						}
 						else
-						{
-							dictionary.Add(value, new List<PropEntry>
-							{
-								item
-							});
-						}
+							dictionary.Add(value, new List<PropEntry> {item});
 					}
 				}
 			}
 
 			return dictionary;
 		}
-		private float ToFloat(string text) => System.Convert.ToSingle(text, new System.Globalization.CultureInfo("en-US"));
-		
-		public static void SaveObjectToFile(Object obj, string fileName)
-		{
-			AssetDatabase.CreateAsset(obj, fileName);
-			AssetDatabase.SaveAssets();
-			AssetDatabase.Refresh();
-		}
-
+		private float ToFloat(string text) => Convert.ToSingle(text, new System.Globalization.CultureInfo("en-US"));
 
 		private struct PropEntry
 		{
@@ -301,17 +266,6 @@ namespace MultiTanks
 			public string texture;
 			public Vector3 position;
 			public float zrotation;
-		}
-		private struct MeshMaterial
-		{
-			public MeshMaterial(Mesh mesh, Material material)
-			{
-				this.mesh = mesh;
-				this.material = material;
-			}
-
-			public Mesh mesh;
-			public Material material;
 		}
 	}
 	
