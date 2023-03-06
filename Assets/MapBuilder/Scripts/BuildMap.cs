@@ -18,12 +18,16 @@ namespace MultiTanks
 		public string SummerAssetsPath;
 		public string WinterAssetsPath;
 		public string MaterialsFullPath;
+		[Space] 
+		public string ReserveTexturePath;
 		
 		
 		private List<GameObject> instancedSprites = new List<GameObject>();
 		private List<GameObject> instancedMeshes = new List<GameObject>();
 		private List<Material> instancedMaterials = new List<Material>();
 		private List<GameObject> instancedLights = new List<GameObject>();
+
+		private Transform Parent;
 		
 
 		
@@ -42,50 +46,20 @@ namespace MultiTanks
 		[Button()]
 		private void Clear()
 		{
-			if (instancedMeshes != null)
+			if(Parent)
 			{
-				foreach (GameObject mesh in instancedMeshes)
-					DestroyObject(mesh);
-				instancedMeshes.Clear();
+				if(Application.isPlaying)
+					Destroy(Parent.gameObject);
+				else
+					DestroyImmediate(Parent.gameObject);
 			}
-			if (instancedMaterials != null)
-			{
-				foreach (Material obj in instancedMaterials)
-					DestroyMaterial(obj);
-				instancedMaterials.Clear();
-			}
-
-			if (instancedLights != null)
-			{
-				foreach (GameObject obj2 in instancedLights)
-					DestroyObject(obj2);
-				instancedLights.Clear();
-			}
-
-			if (instancedSprites != null)
-			{
-				foreach (GameObject obj3 in instancedSprites)
-					DestroyObject(obj3);
-				instancedSprites.Clear();
-			}
-
 			Resources.UnloadUnusedAssets();
-
-			void DestroyObject(GameObject obj)
-			{
-				if (Application.isPlaying) Destroy(obj);
-				else DestroyImmediate(obj);
-			}
-			void DestroyMaterial(Material obj)
-			{
-				if (Application.isPlaying) Destroy(obj);
-				else DestroyImmediate(obj);
-			}
 		}
 
 
 		private void CreateMap(Dictionary<string, List<PropEntry>> propDict)
 		{
+			Parent = new GameObject(MapName).transform;
 			System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
 			int errors = 0;
 			
@@ -154,45 +128,47 @@ namespace MultiTanks
 							var meshPrefab = (GameObject) Resources.Load(assetsPath + text, typeof(GameObject));
 							var spawnedMesh = PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
 							
-							Material material;
+							Material material = null;
 							if (propEntry2.texture != "")
 							{
 								string value = firstChild
 									.SelectSingleNode("texture[@name='" + propEntry2.texture + "']")
 									.Attributes["diffuse-map"].Value;
 								value = value.Replace(".jpg", "");
-								
-								if (dictionary.ContainsKey(value))
-									material = dictionary[value];
-								else
-								{
-									//if (!assetBundle.Contains(value))
-									//	continue;
 
-									//Texture mainTexture = assetBundle.LoadAsset(value) as Texture;
-									Texture mainTexture = (Texture) Resources.Load(assetsPath + value, typeof(Texture));
+								Texture mainTexture = (Texture) Resources.Load(assetsPath + value, typeof(Texture));
+								if (mainTexture == null)
+									mainTexture = (Texture) Resources.Load(ReserveTexturePath + value, typeof(Texture));
+								if (mainTexture == null)
+								{
+									Debug.LogError($"Cant find texture: {value})");
+									continue;
+								}
+
+
+								string matPath =
+									$"{MaterialsFullPath}{spawnedMesh.GetComponent<Renderer>().sharedMaterial.name}_{mainTexture.name}.mat";
+								var loadedMaterial = AssetDatabase.LoadAssetAtPath<Material>(matPath);
+								if (!loadedMaterial)
+								{
 									material = new Material(spawnedMesh.GetComponent<Renderer>().sharedMaterial);
 									material.mainTexture = mainTexture;
-									dictionary.Add(value, material);
 									instancedMaterials.Add(material);
-
-									var matPath = $"{MaterialsFullPath}{material.name}_{mainTexture.name}.mat";
-									var loadedAsset = AssetDatabase.LoadAssetAtPath<Material>(matPath);
-									if (!loadedAsset)
-									{
-										AssetDatabase.CreateAsset(material, "Assets/Artifacts/" + $"{material.name}_{mainTexture.name}.mat");
-										Debug.Log($"New asset: {material.name}_{mainTexture.name}.mat");
-									}
+									AssetDatabase.CreateAsset(material, matPath);
+									Debug.Log($"New asset: {material.name}_{mainTexture.name}.mat");
 								}
+								else
+									material = loadedMaterial;
+
 							}
-							else material = spawnedMesh.GetComponent<Renderer>().sharedMaterial;
 
 							//var spawnedMesh = Instantiate(meshPrefab);
 							//var spawnedMesh = PrefabUtility.InstantiatePrefab(meshPrefab) as GameObject;
-							spawnedMesh.transform.SetParent(transform);
+							spawnedMesh.transform.SetParent(Parent);
 							spawnedMesh.transform.position = propEntry2.position;
 							spawnedMesh.transform.rotation = Quaternion.Euler(0f, propEntry2.zrotation, 0f);
-							spawnedMesh.GetComponent<Renderer>().sharedMaterial = material;
+							if(material != null)
+								spawnedMesh.GetComponent<Renderer>().sharedMaterial = material;
 							
 							instancedMeshes.Add(spawnedMesh);
 						}
@@ -202,7 +178,7 @@ namespace MultiTanks
 							value2 = value2.Replace(".png", "");
 							float scale = ToFloat(firstChild.Attributes["scale"].Value) * 0.4f;
 							GameObject spawnedSprite = Instantiate(spritePrefab, propEntry2.position + Vector3.up*2f, spritePrefab.transform.rotation);
-							spawnedSprite.transform.SetParent(transform);
+							spawnedSprite.transform.SetParent(Parent);
 							spawnedSprite.transform.localScale = new Vector3(scale, scale, 1f)/2.5f;
 							
 							if (dictionary.ContainsKey(value2))
@@ -213,7 +189,7 @@ namespace MultiTanks
 							{
 								//Texture mainTexture2 = assetBundle.LoadAsset(value2) as Texture;
 								Texture mainTexture2 = (Texture) Resources.Load(assetsPath + value2, typeof(Texture));
-								Material material2 = spawnedSprite.GetComponent<Renderer>().material;
+								Material material2 = spawnedSprite.GetComponent<Renderer>().sharedMaterial;
 								material2.mainTexture = mainTexture2;
 								dictionary.Add(value2, material2);
 								instancedMaterials.Add(material2);
