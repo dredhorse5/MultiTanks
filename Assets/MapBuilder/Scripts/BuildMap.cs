@@ -4,15 +4,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEditor;
-using UnityEngine.UI;
-using Object = UnityEngine.Object;
 
 namespace MultiTanks
 {
 	public class BuildMap : MonoBehaviour
 	{
-		public string MapPath;
-		public string MapName;
+		public TextAsset Map;
 		[Space]
 		public GameObject spritePrefab;
 		public string SummerAssetsPath;
@@ -28,7 +25,7 @@ namespace MultiTanks
 		[Button()]
 		public void LoadMap()
 		{
-			LoadMap(MapPath + MapName + ".xml");
+			LoadMap(AssetDatabase.GetAssetPath(Map));
 		}
 		public void LoadMap(string mapFile)
 		{
@@ -53,7 +50,7 @@ namespace MultiTanks
 
 		private void CreateMap(Dictionary<string, List<PropEntry>> propDict)
 		{
-			Parent = new GameObject(MapName).transform;
+			Parent = new GameObject(Map.name).transform;
 			System.Xml.XmlDocument xmlDocument = new System.Xml.XmlDocument();
 			
 			

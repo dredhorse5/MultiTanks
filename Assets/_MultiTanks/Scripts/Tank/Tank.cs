@@ -140,6 +140,7 @@ namespace MultiTanks
             Debug.Log($"New body: {nowBody.name}");
         }
 
+
         [Command] public void CmdChangeGun(TankGun.Types type) => ServerChangeGun(type);
         [Server] public void ServerChangeGun(TankGun.Types type)
         {
