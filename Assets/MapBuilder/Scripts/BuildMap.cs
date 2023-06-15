@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
-using NaughtyAttributes;
+using DredPack.Help;
 using UnityEditor;
 
 namespace MultiTanks
@@ -10,6 +10,16 @@ namespace MultiTanks
 	public class BuildMap : MonoBehaviour
 	{
 		public TextAsset Map;
+		[Button(nameof(LoadThisMap))]
+		public bool btn1;
+		public List<TextAsset> Maps;
+		public int currentMapIndex = 0;
+		[Button(nameof(LoadMapIndex))]
+		public bool btn3;
+		[Button(nameof(Next))]
+		public bool btn4;
+		[Button(nameof(Previous))]
+		public bool btn5;
 		[Space]
 		public GameObject spritePrefab;
 		public string SummerAssetsPath;
@@ -22,10 +32,28 @@ namespace MultiTanks
 		
 
 		
-		[Button()]
-		public void LoadMap()
+		public void LoadThisMap()
 		{
 			LoadMap(AssetDatabase.GetAssetPath(Map));
+		}
+		public void LoadMapIndex()
+		{
+			if (currentMapIndex >= Maps.Count)
+				currentMapIndex = 0;
+			else if (currentMapIndex < 0)
+				currentMapIndex = Maps.Count - 1;
+			Map = Maps[currentMapIndex];
+			LoadThisMap();
+		}
+		public void Next()
+		{
+			currentMapIndex++;
+			LoadMapIndex();
+		}
+		public void Previous()
+		{
+			currentMapIndex--;
+			LoadMapIndex();
 		}
 		public void LoadMap(string mapFile)
 		{
@@ -34,7 +62,7 @@ namespace MultiTanks
 			Clear();
 			CreateMap(GeneratePropDict(xmlDocument));
 		}
-		[Button()]
+		[NaughtyAttributes.Button()]
 		private void Clear()
 		{
 			if(Parent)

@@ -9,10 +9,6 @@ public class FpsCounter : MonoBehaviour
  
     private float _timer;
 
-    public void Start()
-    {
-        Application.targetFrameRate = 60;
-    }
 
     private void Update()
     {

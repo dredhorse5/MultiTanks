@@ -2,10 +2,15 @@ using System.Collections.Generic;
 using DredPack;
 using UnityEngine;
 
-namespace MultiTanks.Managers
+namespace MultiTanks
 {
     public class GameManager : GeneralSingleton<GameManager>
     {
+        public int MaxFPS = 60;
+        public void Start()
+        {
+            Application.targetFrameRate = MaxFPS;
+        }
         public List<TankGun> Guns;
         public List<TankBody> Bodies;
 

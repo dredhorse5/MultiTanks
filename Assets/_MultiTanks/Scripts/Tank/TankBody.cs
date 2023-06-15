@@ -6,6 +6,7 @@ namespace MultiTanks
     public class TankBody : MonoBehaviour
     {
         public Types Type;
+        public float Mass = 100;
         public Transform GunPlace;
         [Space] public float MinForce = .5f;
         public float MaxForce = 1f;
@@ -22,14 +23,15 @@ namespace MultiTanks
 
 
         public float wheelGroundedValue { get; protected set; }
-        public Vector3 forwardVelocity => Vector3.Project(owner.Rigidbody.velocity, transform.forward);
-        public Vector3 sideVelocity => Vector3.Project(owner.Rigidbody.velocity, transform.right);
+        public Vector3 forwardVelocity => Vector3.Project(Rigidbody.velocity, transform.forward);
+        public Vector3 sideVelocity => Vector3.Project(Rigidbody.velocity, transform.right);
+        private Rigidbody Rigidbody => owner.Tank.Rigidbody;
 
-        private Tank owner;
+        private TankBodyNet owner;
         private float forceValue;
         private float torqueValue;
 
-        public void SetOwner(Tank owner) => this.owner = owner;
+        public void SetOwner(TankBodyNet owner) => this.owner = owner;
 
         private void Start()
         {
@@ -44,11 +46,11 @@ namespace MultiTanks
             if (wheelGroundedValue <= 0.01f)
                 return;
             var curForce = Mathf.Lerp(MinForce, MaxForce, wheelGroundedValue);
-            owner.Rigidbody.AddForceAtPosition(-1000f * curForce * forceValue * transform.forward, ForcePoint.position);
-            owner.Rigidbody.AddForce(1000f * -ForwardFriction * wheelGroundedValue * forwardVelocity);
+            Rigidbody.AddForceAtPosition(-1000f * curForce * forceValue * transform.forward, ForcePoint.position);
+            Rigidbody.AddForce(1000f * -ForwardFriction * wheelGroundedValue * forwardVelocity);
 
-            owner.Rigidbody.AddTorque(1000f * Torque * torqueValue * transform.up * TorqueForceBySpeed.Evaluate(owner.Rigidbody.velocity.magnitude));
-            owner.Rigidbody.AddForce(1000f * -sideVelocity * SideFriction);
+            Rigidbody.AddTorque(1000f * Torque * torqueValue * transform.up * TorqueForceBySpeed.Evaluate(Rigidbody.velocity.magnitude));
+            Rigidbody.AddForce(1000f * -sideVelocity * SideFriction);
         }
         
 
@@ -94,6 +96,12 @@ namespace MultiTanks
             Body1,
             Body2,
             Body3,
+            Body4,
+            Body5,
+            Body6,
+            Body7,
+            Body8,
+            Body9
         }
     }
 }
