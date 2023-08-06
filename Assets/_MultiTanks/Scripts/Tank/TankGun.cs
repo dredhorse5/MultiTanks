@@ -63,7 +63,8 @@ namespace MultiTanks
 
         public void FireFeedback()
         {
-            currentMuzzle.Particles.Play();
+            if(currentMuzzle.Particles)
+                currentMuzzle.Particles.Play();
         }
 
         private void UpdateRotate()

@@ -67,12 +67,12 @@ namespace MultiTanks
             if(Input.GetKeyDown(KeyCode.R))
             {
                 var b = (int) (BodyNet.bodyType);
-                BodyNet.ServerChangeBody((TankBody.Types)(++b));
+                BodyNet.CmdChangeBody((TankBody.Types)(++b));
             }
             else if(Input.GetKeyDown(KeyCode.F))
             {
                 var b = (int) (BodyNet.bodyType);
-                BodyNet.ServerChangeBody((TankBody.Types)(--b));
+                BodyNet.CmdChangeBody((TankBody.Types)(--b));
             }
             
             //gun control
@@ -82,12 +82,12 @@ namespace MultiTanks
             if(Input.GetKeyDown(KeyCode.T))
             {
                 var g = (int)(GunNet.gunType);
-                GunNet.ServerChangeGun((TankGun.Types)(++g));
+                GunNet.CmdChangeGun((TankGun.Types)(++g));
             }
             else if(Input.GetKeyDown(KeyCode.G))
             {
                 var g = (int)(GunNet.gunType);
-                GunNet.ServerChangeGun((TankGun.Types)(--g));
+                GunNet.CmdChangeGun((TankGun.Types)(--g));
             }
 
             if (Input.GetKey(KeyCode.Z))
