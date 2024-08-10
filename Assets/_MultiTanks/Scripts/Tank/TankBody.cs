@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
@@ -17,8 +19,7 @@ namespace MultiTanks
         public AnimationCurve TorqueForceBySpeed;
 
         public Transform ForcePoint;
-        public WheelCollider[] LeftWheels;
-        public WheelCollider[] RightWheels;
+        public List<TankWheel> Wheels;
 
 
 
@@ -35,7 +36,7 @@ namespace MultiTanks
 
         private void Start()
         {
-            InitWheels();
+            Wheels.ForEach(_ => _.Rigidbody = Rigidbody);
         }
 
         private void FixedUpdate()
@@ -66,6 +67,16 @@ namespace MultiTanks
 
         private void CalculateWheelGrounded()
         {
+            wheelGroundedValue =Wheels.Find(_ => _.currentValueDistance < 1f) ? 1 : 0;
+            /*float dist = 1;
+            foreach (var wh in Wheels)
+            {
+                if (wh.currentValueDistance < dist)
+                    dist = wh.currentValueDistance;
+            }*/
+
+            //wheelGroundedValue = (1f - dist); //Wheels.Find(_ => _.currentValueDistance < 1f) ? 1 : 0;
+            /*
             wheelGroundedValue = 0;
             foreach (var wheel in LeftWheels)
             {
@@ -79,15 +90,7 @@ namespace MultiTanks
                     wheelGroundedValue++;
             }
 
-            wheelGroundedValue /= LeftWheels.Length + RightWheels.Length;
-        }
-
-        private void InitWheels()
-        {
-            foreach (var wheel in LeftWheels)
-                wheel.motorTorque = 0.1f;
-            foreach (var wheel in RightWheels)
-                wheel.motorTorque = 0.1f;
+            wheelGroundedValue /= LeftWheels.Length + RightWheels.Length;*/
         }
 
         public enum Types : byte
