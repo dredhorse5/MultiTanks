@@ -2,6 +2,7 @@ using System;
 using DredPack.Camera;
 using Mirror;
 using NaughtyAttributes;
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,7 +77,7 @@ namespace MultiTanks
             }
             
             //gun control
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetAxisRaw("GunFire") > .5f)
                 GunNet.CmdFire();
             
             if(Input.GetKeyDown(KeyCode.T))
@@ -89,13 +90,14 @@ namespace MultiTanks
                 var g = (int)(GunNet.gunType);
                 GunNet.CmdChangeGun((TankGun.Types)(--g));
             }
+            GunNet.CmdSetGunRotate(Input.GetAxis("GunRotate"));
 
-            if (Input.GetKey(KeyCode.Z))
+            /*if (Input.GetKey(KeyCode.Z))
                 GunNet.CmdSetGunRotate(-1);
             else if (Input.GetKey(KeyCode.X))
                 GunNet.CmdSetGunRotate(1);
             else
-                GunNet.CmdSetGunRotate(0);
+                GunNet.CmdSetGunRotate(0);*/
             
             
         }

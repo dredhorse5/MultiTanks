@@ -10,8 +10,11 @@ namespace MultiTanks
         public Types Type;
         public float Mass = 100;
         public Transform GunPlace;
-        [Space] public float MinForce = .5f;
-        public float MaxForce = 1f;
+        [Space]
+        public float MaxSpeed = 20f;
+        public float MaxBackSpeed = 5;
+        public float MoveForce = 1000;
+        public AnimationCurve ForceCurveBySpeed= AnimationCurve.Constant(0,1,1);
         public float Torque = 2.5f;
         [Space] 
         [Min(0)] public float SideFriction = 1;
@@ -42,14 +45,17 @@ namespace MultiTanks
         private void FixedUpdate()
         {
             CalculateWheelGrounded();
-            
-            
+
+
+            float velocity = forwardVelocity.magnitude * (Vector3.Angle(forwardVelocity, transform.forward) > 90f ? 1f : -1f);
+            Debug.Log(velocity);
+            var force = ForceCurveBySpeed.Evaluate(velocity > 0 ? Mathf.InverseLerp(0f, MaxSpeed, velocity) : Mathf.InverseLerp(0f,-MaxBackSpeed, velocity)) * MoveForce;
+
+            Wheels.ForEach(_ => _.SetForce(-force * forceValue));
+            /*Rigidbody.AddForceAtPosition(-1000f * curForce * forceValue * transform.forward, ForcePoint.position);
+            Rigidbody.AddForce(1000f * -ForwardFriction * wheelGroundedValue * forwardVelocity);*/
             if (wheelGroundedValue <= 0.01f)
                 return;
-            var curForce = Mathf.Lerp(MinForce, MaxForce, wheelGroundedValue);
-            Rigidbody.AddForceAtPosition(-1000f * curForce * forceValue * transform.forward, ForcePoint.position);
-            Rigidbody.AddForce(1000f * -ForwardFriction * wheelGroundedValue * forwardVelocity);
-
             Rigidbody.AddTorque(1000f * Torque * torqueValue * transform.up * TorqueForceBySpeed.Evaluate(Rigidbody.velocity.magnitude));
             Rigidbody.AddForce(1000f * -sideVelocity * SideFriction);
         }
