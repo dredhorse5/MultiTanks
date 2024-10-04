@@ -75,7 +75,6 @@ namespace MultiTanks
 
         public void OnChangeGun(TankGun.Types oldType, TankGun.Types newType)
         {
-            
             if (nowGun)
                 Destroy(nowGun.gameObject);
             nowGun = Instantiate(GameManager.Instance.GetGunPrefab(newType), Holder);
